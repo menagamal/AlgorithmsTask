@@ -6,5 +6,9 @@ target 'AlgorithmsTask' do
   use_frameworks!
 
   # Pods for AlgorithmsTask
+	pod 'Alamofire'
+    pod 'SDWebImage'
+
+
 
 end

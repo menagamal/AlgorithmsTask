@@ -33,7 +33,7 @@ class LoadingView: UIView {
                 
                 let rotation = CABasicAnimation(keyPath: "transform.rotation")
                 rotation.fromValue = 0
-                rotation.toValue = (2 * M_PI)
+                rotation.toValue = (2 * Double.pi)
                 rotation.duration = 1.5
                 rotation.repeatCount = Float.greatestFiniteMagnitude
                 

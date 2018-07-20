@@ -31,7 +31,7 @@ class AlbumTableViewCell: UITableViewCell {
     }
     override func prepareForReuse() {
         selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_unselected"), for: .normal)
-
+        selectedFlag = false 
     }
     
     @IBAction func selectButtonAction(_ sender: UIButton) {
@@ -45,7 +45,10 @@ class AlbumTableViewCell: UITableViewCell {
         labelTitle.text = album.title
         labelAlbumId.text = "Album ID : \(album.albumID!)"
         
-        albumImageView?.sd_setImage(with: URL(string: album.thumbnailUrl), completed: nil)
+        if let temp = album.thumbnailUrl as? String {
+            let x = URL(string:temp)
+             albumImageView?.sd_setImage(with: x, completed: nil)
+        }
      
       
     }

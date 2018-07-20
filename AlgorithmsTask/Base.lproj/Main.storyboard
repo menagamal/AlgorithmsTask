@@ -45,6 +45,7 @@
                     <navigationItem key="navigationItem" id="4YB-f1-lrE"/>
                     <connections>
                         <outlet property="albumsTableView" destination="Txo-6q-ViI" id="k87-aJ-6Hb"/>
+                        <outlet property="btnFilter" destination="sJx-yj-Ip5" id="Q9d-Kz-uLM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -14,7 +14,8 @@ class ViewController: UIViewController , ActionDelegate , UITableViewDataSource 
     var content : ApiManager!
     
     @IBOutlet weak var albumsTableView: UITableView!
-   
+    @IBOutlet weak var btnFilter: UIButton!
+    
     
     var albums = [Album]()
     var selectedAlbums = [Album]()
@@ -49,31 +50,40 @@ class ViewController: UIViewController , ActionDelegate , UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if selecteflag {
+            
             return selectedAlbums.count
+            
+        } else {
+            return albums.count
         }
-        return albums.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
         
-        if selectedAlbums.contains(where: { String.Encoding(rawValue: UInt($0.id!)) == String.Encoding(rawValue: UInt(albums[indexPath.row].id!)) }) {
-            // found
-            cell.selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_selected"), for: .normal)
-
+        if self.selecteflag {
+            cell.selectButtonOutlet.isHidden = true
+            cell.setDetails(album: selectedAlbums[indexPath.row])
+            
         } else {
-            // not
-            cell.selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_unselected"), for: .normal)
-
-        }
-        
-        cell.setDetails(album: albums[indexPath.row]) {
-            if self.selecteflag {
-                cell.selectButtonOutlet.isHidden = true
+            cell.selectButtonOutlet.isHidden = false
+            if selectedAlbums.contains(where: { String.Encoding(rawValue: UInt($0.id!)) == String.Encoding(rawValue: UInt(albums[indexPath.row].id!)) }) {
+                // found
+                cell.selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_selected"), for: .normal)
             } else {
+                // not
+                cell.selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_unselected"), for: .normal)
+                
+            }
+            
+            cell.setDetails(album: albums[indexPath.row]) {
+                
                 if cell.selectedFlag {
-                    self.selectedAlbums.remove(at: indexPath.row)
+                    self.selectedAlbums = self.selectedAlbums.filter { $0.id != self.albums[indexPath.row].id }
+                    
                     cell.selectedFlag = false
                     cell.selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_unselected"), for: .normal)
                     
@@ -89,6 +99,8 @@ class ViewController: UIViewController , ActionDelegate , UITableViewDataSource 
                         Toast.showAlert(viewController: self, text: "You can only select up to 10 Albums")
                     }
                 }
+                
+                
             }
             
         }
@@ -108,6 +120,7 @@ class ViewController: UIViewController , ActionDelegate , UITableViewDataSource 
         self.navigationItem.rightBarButtonItems = [cancelButton]
         cancelButton.tintColor = UIColor.white
         selecteflag = true
+        btnFilter.isHidden = true
         albumsTableView.reloadData()
         
 
@@ -116,12 +129,19 @@ class ViewController: UIViewController , ActionDelegate , UITableViewDataSource 
      @objc func cancelAction()  {
         self.navigationItem.rightBarButtonItems?.removeAll()
         selecteflag = false
+        btnFilter.isHidden = false
+        
         albumsTableView.reloadData()
+        
     }
+    
+    
     
     func onPreExecute(action: ApiManager.ActionType) {
         loadingView.setIsLoading(true)
     }
+    
+    
     func onPostExecute(success: Bool, action: ApiManager.ActionType, message: String, response: Any!) {
         loadingView.setIsLoading(false)
         if success {

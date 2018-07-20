@@ -11,6 +11,7 @@ import Foundation
 class Album {
     
     var id:Int!
+    var albumID:Int!
     var title:String!
     var photo:String!
     
@@ -19,7 +20,20 @@ class Album {
     }
     
     init(json:[String:Any]) {
+        if let temp = json["id"] as? Int {
+            id = temp
+        }
+        if let temp = json["albumId"] as? Int {
+            albumID = temp
+        }
         
+        if let temp = json["title"] as? String {
+            title = temp
+        }
+        if let temp = json["url"] as? String {
+            photo = temp
+        }
+       
     }
     
 }

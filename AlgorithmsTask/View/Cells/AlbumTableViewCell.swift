@@ -36,7 +36,7 @@ class AlbumTableViewCell: UITableViewCell {
     
     func setDetails(album:Album , selectedButtonAction: (() -> Void)! = nil) {
         labelTitle.text = album.title
-        labelAlbumId.text = "\(album.id)"
+        labelAlbumId.text = "\(album.albumID)"
         albumImageView?.sd_setImage(with: URL(string: album.photo), completed: nil)
     }
     

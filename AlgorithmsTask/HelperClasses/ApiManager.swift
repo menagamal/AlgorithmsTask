@@ -22,35 +22,49 @@ public class ApiManager : BaseUrlSession{
         self.delegate = delegate
     }
     
+    func getAllAlbums()  {
+        let params = [String: Any]()
+        
+        let actionType = ActionType.getAllAlbums;
+        let url = URL(string: "\(baseUrl)photos")!
+        
+        requestConnection(action: actionType, method: "get", url: url, body: params, shouldCache: false)
+    }
+    
     
     
     override func onSuccess(action: Any, response: URLResponse!, data: Data!) {
         let actionType: ActionType = action as! ApiManager.ActionType
         do {
-            _ = String(data: data, encoding: .utf8)
-            var jsonResponse = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] ?? [String: Any]()
+            //_ = String(data: data, encoding: .utf8)
             
-            var message: String!
-            if let m = jsonResponse["error"] as? [String] {
-                if m.count > 0 {
-                    message = m[0]
-                }
-            } else if let m = jsonResponse["error"] as? String {
-                message = m
+            let jsonResponse = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String: Any]]
+  
+            let success :Bool!
+            if jsonResponse!.isEmpty {
+                success = false
+            } else {
+                success = true
             }
             
-            message = message != nil ? message : jsonResponse["error_message"] as? String
-            let success = message == nil
+            
             if success {
-                print(jsonResponse)
                 switch actionType {
+                case .getAllAlbums :
+                    var albums = [Album] ()
+                    for item in jsonResponse! {
+                        let album = Album(json: item)
+                        albums.append(album)
+                    }
+                    delegate.onPostExecute(success: true, action: actionType, message: "", response: albums)
+                    break
                 default:
                     break
                 }
-                
             }else {
-                let code = jsonResponse["error_code"] as? Int ?? -1
-                let codeMessage = message ?? ""
+                //let code = jsonResponse["error_code"] as? Int ?? -1
+                let code = 404
+                let codeMessage = "NO ITEMS FOUND"
                 onFailure(action: actionType, error: NSError(domain: codeMessage, code: code, userInfo: nil))
             }
             
@@ -71,12 +85,8 @@ public class ApiManager : BaseUrlSession{
     
     
     override func onFailure(action: Any, error: Error) {
-        if error != nil {
-            delegate.onPostExecute(success: false, action: action as! ApiManager.ActionType, message: error._domain , response: nil)
-        } else {
-            
-            delegate.onPostExecute(success: false, action: action as! ApiManager.ActionType, message: error.localizedDescription , response: nil)
-        }
+        
+        delegate.onPostExecute(success: false, action: action as! ApiManager.ActionType, message: error.localizedDescription , response: nil)
         
     }
     

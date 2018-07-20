@@ -12,3 +12,9 @@ Helper Classes :
 
 BaseUrlSession : it contains the connection established by Almofire
 ApiMmanager : Handles all the api calls
+
+
+
+
+
+

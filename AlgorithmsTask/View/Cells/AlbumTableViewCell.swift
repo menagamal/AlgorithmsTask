@@ -22,12 +22,17 @@ class AlbumTableViewCell: UITableViewCell {
     
     private var selectedAction:(() -> Void)!
     
+    var selectedFlag = false 
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+      
     }
-    
+    override func prepareForReuse() {
+        selectButtonOutlet.setImage(UIImage(named:"ic_master_visa_unselected"), for: .normal)
+
+    }
     
     @IBAction func selectButtonAction(_ sender: UIButton) {
         selectedAction()
@@ -35,9 +40,14 @@ class AlbumTableViewCell: UITableViewCell {
     
     
     func setDetails(album:Album , selectedButtonAction: (() -> Void)! = nil) {
+        selectedAction = selectedButtonAction
+        
         labelTitle.text = album.title
-        labelAlbumId.text = "\(album.albumID)"
-        albumImageView?.sd_setImage(with: URL(string: album.photo), completed: nil)
+        labelAlbumId.text = "Album ID : \(album.albumID!)"
+        
+        albumImageView?.sd_setImage(with: URL(string: album.thumbnailUrl), completed: nil)
+     
+      
     }
     
     

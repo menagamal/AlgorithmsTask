@@ -14,6 +14,7 @@ class Album {
     var albumID:Int!
     var title:String!
     var photo:String!
+    var thumbnailUrl:String!
     
     init() {
         
@@ -32,6 +33,9 @@ class Album {
         }
         if let temp = json["url"] as? String {
             photo = temp
+        }
+        if let temp = json["thumbnailUrl"] as? String {
+            thumbnailUrl = temp
         }
        
     }

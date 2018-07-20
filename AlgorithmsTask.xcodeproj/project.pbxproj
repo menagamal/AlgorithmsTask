@@ -22,6 +22,7 @@
 		D0F614AA21025EB6001795A2 /* BaseUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F614A921025EB6001795A2 /* BaseUrlSession.swift */; };
 		D0F614AC21025F37001795A2 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F614AB21025F37001795A2 /* ApiManager.swift */; };
 		D0F614AE21025F7C001795A2 /* NeededProtocalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F614AD21025F7C001795A2 /* NeededProtocalls.swift */; };
+		D0F614B021026FA7001795A2 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F614AF21026FA7001795A2 /* Toast.swift */; };
 		D2A554CB45B7C6476A24EDE5 /* Pods_AlgorithmsTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5FA5DB1DAE1D75DF37DE399 /* Pods_AlgorithmsTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		D0F614A921025EB6001795A2 /* BaseUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUrlSession.swift; sourceTree = "<group>"; };
 		D0F614AB21025F37001795A2 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		D0F614AD21025F7C001795A2 /* NeededProtocalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeededProtocalls.swift; sourceTree = "<group>"; };
+		D0F614AF21026FA7001795A2 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				D0F6148D21024FB5001795A2 /* CircularImageView.swift */,
 				D0F6148F21024FD3001795A2 /* LoadingView.swift */,
 				D0F6149121024FEF001795A2 /* RoundedEdgeView.swift */,
+				D0F614AF21026FA7001795A2 /* Toast.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				D0F6149021024FD3001795A2 /* LoadingView.swift in Sources */,
 				D0F6147821023E49001795A2 /* AppDelegate.swift in Sources */,
 				D0F614A421025B13001795A2 /* AlbumTableViewCell.swift in Sources */,
+				D0F614B021026FA7001795A2 /* Toast.swift in Sources */,
 				D0F6148E21024FB5001795A2 /* CircularImageView.swift in Sources */,
 				D0F614942102504F001795A2 /* Album.swift in Sources */,
 			);

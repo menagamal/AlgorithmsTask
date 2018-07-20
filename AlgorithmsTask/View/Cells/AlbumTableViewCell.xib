@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +14,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="138" id="KGk-i7-Jjw" customClass="AlbumTableViewCell" customModule="AlgorithmsTask" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableViewCell" rowHeight="138" id="KGk-i7-Jjw" customClass="AlbumTableViewCell" customModule="AlgorithmsTask" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="347" height="138"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -26,40 +27,54 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yrz-f0-M5V">
                                 <rect key="frame" x="16" y="8" width="121.5" height="121.5"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upz-m9-2A0">
-                                <rect key="frame" x="153.5" y="11" width="35.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upz-m9-2A0">
+                                <rect key="frame" x="153.5" y="12" width="35.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-rC-xpE">
-                                <rect key="frame" x="152" y="40" width="51.5" height="14.5"/>
+                                <rect key="frame" x="152" y="41" width="51.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.62900259300000005" green="0.63229580029999999" blue="0.63229580029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-Xg-DGX">
                                 <rect key="frame" x="307" y="56" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CUv-Xg-DGX" secondAttribute="height" multiplier="1:1" id="4Fw-wz-nBx"/>
+                                </constraints>
                                 <state key="normal" image="ic_master_visa_unselected"/>
                                 <connections>
                                     <action selector="selectButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dpl-7g-6SW"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDf-1E-eTs">
+                                <rect key="frame" x="0.0" y="135.5" width="347" height="2"/>
+                                <color key="backgroundColor" red="0.86441852760000004" green="0.86894427910000005" blue="0.86894427910000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="FQb-5i-htm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Sqg-rC-xpE" firstAttribute="top" secondItem="Upz-m9-2A0" secondAttribute="bottom" constant="8" id="7oi-W5-Y7f"/>
                             <constraint firstItem="CUv-Xg-DGX" firstAttribute="centerY" secondItem="ofN-1T-EVa" secondAttribute="centerY" id="8ZK-nV-Q87"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Sqg-rC-xpE" secondAttribute="bottom" constant="8" id="93g-6I-0RE"/>
+                            <constraint firstItem="Upz-m9-2A0" firstAttribute="top" secondItem="ofN-1T-EVa" secondAttribute="top" constant="12" id="9hO-gy-scN"/>
+                            <constraint firstAttribute="trailing" secondItem="zDf-1E-eTs" secondAttribute="trailing" id="Bbd-Do-R63"/>
                             <constraint firstItem="Yrz-f0-M5V" firstAttribute="top" secondItem="ofN-1T-EVa" secondAttribute="top" constant="8" id="Bde-4Q-JuH"/>
                             <constraint firstAttribute="bottom" secondItem="Yrz-f0-M5V" secondAttribute="bottom" constant="8" id="C1E-1q-aVq"/>
                             <constraint firstItem="Yrz-f0-M5V" firstAttribute="width" secondItem="ofN-1T-EVa" secondAttribute="width" multiplier="0.35" id="DtO-Jp-DNi"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Sqg-rC-xpE" secondAttribute="trailing" constant="8" id="Kqd-Jm-sYD"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Upz-m9-2A0" secondAttribute="trailing" constant="8" id="TsT-5h-3mV"/>
+                            <constraint firstItem="zDf-1E-eTs" firstAttribute="leading" secondItem="ofN-1T-EVa" secondAttribute="leading" id="YCU-UW-drB"/>
                             <constraint firstItem="Upz-m9-2A0" firstAttribute="leading" secondItem="Yrz-f0-M5V" secondAttribute="trailing" constant="16" id="cL3-3z-tQk"/>
+                            <constraint firstAttribute="bottom" secondItem="zDf-1E-eTs" secondAttribute="bottom" id="fcu-lT-7ey"/>
                             <constraint firstAttribute="trailing" secondItem="CUv-Xg-DGX" secondAttribute="trailing" constant="16" id="iY6-P7-vE2"/>
+                            <constraint firstItem="CUv-Xg-DGX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Upz-m9-2A0" secondAttribute="trailing" constant="2" id="j72-CT-ddP"/>
                             <constraint firstItem="Yrz-f0-M5V" firstAttribute="leading" secondItem="ofN-1T-EVa" secondAttribute="leading" constant="16" id="lY8-Tm-mxj"/>
                             <constraint firstItem="Sqg-rC-xpE" firstAttribute="leading" secondItem="Yrz-f0-M5V" secondAttribute="trailing" constant="14.5" id="ncs-4G-HGS"/>
-                            <constraint firstItem="Yrz-f0-M5V" firstAttribute="top" secondItem="Upz-m9-2A0" secondAttribute="bottom" constant="-24" id="wo8-lK-rVH"/>
                         </constraints>
                     </view>
                 </subviews>
